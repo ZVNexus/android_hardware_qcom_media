@@ -8,12 +8,12 @@ ifeq ($(TARGET_USES_QMAA),true)
 endif #TARGET_USES_QMAA
 
 #Compile these for all targets under QCOM_BOARD_PLATFORMS list.
-ifeq ($(call is-board-platform-in-list, $(QCOM_BOARD_PLATFORMS)),true)
+ifneq ($(filter lito kona, $(TARGET_BOARD_PLATFORM)),)
 include $(QCOM_MEDIA_ROOT)/libstagefrighthw/Android.mk
 include $(QCOM_MEDIA_ROOT)/mm-core/Android.mk
 endif
 
-ifeq ($(call is-board-platform-in-list, $(MSM_VIDC_TARGET_LIST)),true)
+ifneq ($(filter lito kona, $(TARGET_BOARD_PLATFORM)),)
 ifeq ($(VIDC_STUB_HAL),false)
 include $(QCOM_MEDIA_ROOT)/libplatformconfig/Android.mk
 include $(QCOM_MEDIA_ROOT)/mm-video-v4l2/Android.mk
